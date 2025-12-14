@@ -8,4 +8,5 @@ dependencies = [
     "torch>=2.9.1",
     "numpy>=2.0.0",
     "jaxtyping>=0.2.25",
+    "einops>=0.8.1",
 ]

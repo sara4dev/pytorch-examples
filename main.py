@@ -1,6 +1,7 @@
 import torch
 from time import sleep
 from jaxtyping import Float
+from einops import einsum
 
 def main() -> None:
     # print_gpu_info()
@@ -8,9 +9,9 @@ def main() -> None:
     # tensor_elementwise_operations()
     # tensor_matmul()
     # tensor_matrix_transpose()
-    einsum()
+    einops_einsum()
 
-def einsum() -> None:
+def einops_einsum() -> None:
     print("-" * 100)
     print("Einsum:")
     print("-" * 100)
@@ -24,7 +25,8 @@ def einsum() -> None:
     print("z.shape: ", z.shape)
 
     # new way
-    z = torch.einsum(x,y,"batch seq1 hidden, batch seq2 hidden -> batch seq1 seq2")
+    z = einsum(x, y, "batch seq1 hidden, batch seq2 hidden -> batch seq1 seq2")
+    # z = torch.einsum("bsh,bth->bst", x, y)
     print("z: ", z)
     print("z.shape: ", z.shape)
 
